@@ -96,7 +96,7 @@
       <pre><code id="deploy-inject"></code></pre>
     </details>
     Still not enough code? See the full source for the website and server on
-    <a class="text-secondary" href="https://github.com/hsscholarbowl">GitHub</a>
+    <a class="text-secondary" href="https://github.com/Holy-Spirit-Scholar-Bowl">GitHub</a>
   </div>
 </template>
 <script lang="ts">
@@ -109,7 +109,7 @@ export default class HowItWorks extends Vue {
       let el = document.getElementById(elementID);
       let url =
         specialURL ??
-        `https://raw.githubusercontent.com/hsscholarbowl/hssb/master/${path}`;
+        `https://raw.githubusercontent.com/Holy-Spirit-Scholar-Bowl/buzzer/main/${path}`;
       fetch(url)
         .then((data) => data.text())
         .then((text) => {
@@ -137,7 +137,7 @@ export default class HowItWorks extends Vue {
     inject(
       "server-inject",
       "",
-      "https://raw.githubusercontent.com/hsscholarbowl/server/master/index.ts"
+      "https://raw.githubusercontent.com/Holy-Spirit-Scholar-Bowl/server/main/index.ts"
     );
   }
 }

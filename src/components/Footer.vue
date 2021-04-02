@@ -12,11 +12,11 @@
       <a
         v-for="[urlending, name] in [
           ['', 'GitHub'],
-          ['/hssb', 'Code'],
+          ['/buzzer', 'Code'],
           ['/server', 'Server'],
         ]"
         :key="name"
-        :href="`https://github.com/hsscholarbowl${urlending}`"
+        :href="`https://github.com/Holy-Spirit-Scholar-Bowl${urlending}`"
         class="float-right ml-4"
       >
         {{ name }}
