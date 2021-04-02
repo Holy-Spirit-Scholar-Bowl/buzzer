@@ -187,5 +187,15 @@ export const changelog: ChangelogItem[] = [
       "The site no longer works offline",
       "The displayed buzz is always the first one"
     ]
+  },
+  {
+    date: {
+      year: 2021,
+      day: 2,
+      month: 4
+    },
+    version: "2.7.1",
+    header: "Privacy Policy",
+    body: "Added a privacy policy"
   }
 ].reverse(); // Since new items are added on the bottom and are displayed at the top, the array should be reversed

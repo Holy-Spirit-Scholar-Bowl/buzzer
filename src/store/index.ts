@@ -23,6 +23,15 @@ Vue.use(Vuex);
 const VuexModule = createModule({});
 
 export class BuzzerStore extends VuexModule {
+  // PRIVACY POLICY
+  showPrivacyPolicy = !localStorage.seenPrivacyPolicy
+
+  @mutation
+  readPrivacyPolicy(): void {
+    localStorage.seenPrivacyPolicy = "true"
+    this.showPrivacyPolicy = false
+  }
+
   // NAME
   _name = "";
 

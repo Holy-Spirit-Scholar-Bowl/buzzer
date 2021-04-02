@@ -15,6 +15,9 @@
         <b-nav-item
           ><router-link to="/changelog">Changelog</router-link></b-nav-item
         >
+        <b-nav-item>
+          <router-link role="button" @click.native="vxm.showPrivacyPolicy = true" to="">Privacy Policy</router-link>
+        </b-nav-item>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto">
         <button class="btn btn-primary w-auto" v-b-modal.settings-modal>
@@ -22,7 +25,7 @@
         </button>
         <b-nav-form class="ml-lg-4">
           <label for="username">Your name is</label>
-          <pre> </pre>
+          <pre></pre>
           <b-form-input
             size="sm"
             class="mr-sm-2"

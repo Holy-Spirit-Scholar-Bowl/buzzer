@@ -8,18 +8,21 @@
       <h2 v-if="showName">{{ location }}</h2>
       <RouterView />
       <SettingsModal />
+      <PrivacyPolicyModal v-if="vxm.showPrivacyPolicy" />
     </div>
     <Footer />
   </div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import { vxm } from "@/store";
+import { BuzzerStore, vxm } from "@/store";
 import BootstrapVue from "bootstrap-vue";
 import Navbar from "@/components/Navbar.vue";
 import Footer from "@/components/Footer.vue";
 import SettingsModal from "@/components/SettingsModal.vue";
+import PrivacyPolicyModal from "@/components/PrivacyPolicyModal.vue";
 import "nprogress/nprogress.css";
+import { ProxyWatchers } from "vuex-class-component/dist/interfaces";
 
 Vue.use(BootstrapVue);
 
@@ -28,6 +31,7 @@ Vue.use(BootstrapVue);
     Navbar,
     Footer,
     SettingsModal,
+    PrivacyPolicyModal
   },
 })
 export default class App extends Vue {
@@ -40,6 +44,10 @@ export default class App extends Vue {
 
   scrollFix(hashbang: string): void {
     window.location.hash = hashbang;
+  }
+
+  get vxm(): ProxyWatchers & BuzzerStore {
+    return vxm;
   }
 
   get showName(): boolean {
