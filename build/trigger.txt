@@ -1,0 +1,1 @@
+Just a simple file so Git will know that this folder exists
