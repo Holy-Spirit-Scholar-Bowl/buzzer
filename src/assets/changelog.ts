@@ -172,5 +172,20 @@ export const changelog: ChangelogItem[] = [
     version: "2.6.1",
     header: "More developer tools, minor improvements",
     body: "Just some internal cleanup. None of it should affect user experience"
+  },
+  {
+    date: {
+      year: 2021,
+      day: 2,
+      month: 4
+    },
+    version: "2.7.0",
+    header: "Move site",
+    body: "Moved the site to a new URL. Also removed PWA support.",
+    items: [
+      "The site will always load the latest version",
+      "The site no longer works offline",
+      "The displayed buzz is always the first one"
+    ]
   }
 ].reverse(); // Since new items are added on the bottom and are displayed at the top, the array should be reversed
