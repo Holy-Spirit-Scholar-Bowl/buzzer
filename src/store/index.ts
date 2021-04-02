@@ -273,7 +273,7 @@ export class BuzzerStore extends VuexModule {
     let command: SendCommand<T> = {
       command: type,
       parameters,
-      sent: new Date().getTime(),
+      sent: performance.now(),
       user: {
         name: this.name,
         realName: this.realName,
