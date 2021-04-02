@@ -1,5 +1,3 @@
-## This is out of date
-
 # Documentation
 This documents how the buzzer system communicates with the server
 
@@ -16,9 +14,14 @@ This documents how the buzzer system communicates with the server
         - [Chat](#chat)
         - [Kicking](#kicking)
         - [Host changes](#host-changes)
+        - [Teams](#teams)
+    - [Developer mode](#developer-mode)
+      - [Points](#points-1)
+      - [Restart](#restart)
     - [To recap:](#to-recap)
       - [Any connected user may:](#any-connected-user-may)
       - [The host may:](#the-host-may)
+      - [A developer may:](#a-developer-may)
       - [Table of commands](#table-of-commands)
 
 ### Basics
@@ -30,10 +33,18 @@ All messages are stringified JSON. The basic format is as follows:
   "parameters": {
     key: any
   } | null;
-  "sent": number
+  "sent": number;
+  "user": {
+    "name": string;
+    "realName": string;
+    "team": string;
+    "host": boolean;
+  }
 }
 ```
 Parameters are optional; setting the `parameters` property to `null` will indicate they are not necessary. The exact content of the parameters depends on the `command`--see below for related documentation. `sent` is the time in milliseconds when the command was sent.
+
+`user` contains information about the user. It is present in all commands and left out of the command formats listed here.
 
 The `command` property indicates what type of action is being sent. For example, if a user buzzes, the `command` will be `"buzz"`.
 
@@ -41,7 +52,7 @@ The `command` property indicates what type of action is being sent. For example,
 ### Steps
 
 #### Handshake
-When a client connects (assuming the server accepts the connection; it may not if it rejects the origin), the server will initiate communication. It sends a `name` command without parameters. The client followes with a `name` command containing the nickname (or name; this is what is displayed on the online list), real name (this keeps track of points), and whether they are to become host. For reference, the two commands are:
+When a client connects (assuming the server accepts the connection; it may not if it rejects the origin), the server will initiate communication. It sends a `name` command without parameters. The client followes with a `name` command containing the nickname (or name; this is what is displayed on the online list), real name (this keeps track of points), and whether they are to become host in the `user` field of the command. For reference, the two commands are:
 ```
 {
   "command": "name",
@@ -52,11 +63,7 @@ for the server, and
 ```
 {
   "command": "name",
-  "parameters": {
-    "name": name,
-    "realName": realName,
-    "host": host
-  }
+  "parameters": null
 }
 ```
 for the client.
@@ -161,12 +168,10 @@ Clients can chat with the `chat` command. The messages are not stored and are re
 {
   "command": "chat",
   "parameters": {
-    "name": name,
     "message": message
   }
 }
 ```
-`name` is the name of the client who sent the message.
 
 ##### Kicking
 The host may kick a user with the `kick` command. 
@@ -191,29 +196,89 @@ The host may make another user the host. In doing so, they will no longer be the
 }
 ```
 
+##### Teams
+Users of the same team have the same number of points. The idea of a team is similar to that of a real name; the only difference is a user's team takes precedence over their real name. A user can set their own team through the handshake. The host can also set the teams of users with the `teams` command:
+```
+{
+  "command": "teams",
+  "parameters": {
+    "users": [
+      {
+        name: name,
+        team: team
+      }
+    ]
+  }
+}
+```
+Each user is contained in the `users` array. When the server receives this command, it notifies the other users, sending each of them a `team` command:
+```
+{
+  "command": "team",
+  "parameters": {
+    team: team
+  }
+}
+```
+
+### Developer mode
+Developer mode is a special mode intended for developers. It allows access to a set of functions not available to other users. Note that the server has no implementation of developer mode; determining whether a user may or may not use these commands is the sole responsibility of the client. Developer mode allows access to all the capabilities of the host, as well as the following commands:
+
+#### Points
+Sets the points of a user to a given value
+```
+{
+  "command": "points",
+  "parameters": {
+    "name": name,
+    "points: points
+  }
+}
+```
+`name` is the name of the user being affected and `points` is the new value of their points.
+
+#### Restart
+Restarts the server. Takes no parameters.
+```
+{
+  "command": "restart",
+  "parameters": null
+}
+```
+
 ### To recap:
 #### Any connected user may:
 1. Buzz
 2. Chat
 
 #### The host may:
-1. Clear buzzes
-2. Kick users
-3. Award points
-4. Reset the scoreboard
-5. Make another user the host
-6. Do anything a connected user can
+1. Do anything a connected user can
+2. Clear buzzes
+3. Kick users
+4. Award points
+5. Reset the scoreboard
+6. Make another user the host
+7. Set teams
 
+#### A developer may:
+1. Do anything a host or connected user can
+2. Restart the server
+3. Set the points of a user
 #### Table of commands
-|           Command        | Sent by client |    Sent by server   |                   Notes                 |
-|:------------------------:|:--------------:|:-------------------:|:---------------------------------------:|
-| [`host`](#host-changes)  | Yes            | Yes                 | Sent during handshake and by client     |
-| [`name`](#handshake)     | Yes            | Yes                 | Multiple formats, sent during handshake |
-| [`buzz`](#buzzing)       | Yes            | When sent by client |                                         |
-| [`clear`](#clearing)     | Yes            | When sent by client |                                         |
-| [`chat`](#chat)          | Yes            | When sent by client |                                         |
-| [`kick`](#kicking)       | Yes            | No                  |                                         |
-| [`ans`](#points)         | Yes            | No                  |                                         |
-| [`success`](#handshake)  | No             | Yes                 | Sent during handshake                   |
-| [`online`](#online-list) | No             | Yes                 | Sent during handshake and on updates    |
-| [`buzzer`](#handshake)   | No             | Yes                 | Sent during handshake                   |
+|          Command         | Sent by client |    Sent by server   |                    Notes                    |
+|:------------------------:|:--------------:|:-------------------:|:-------------------------------------------:|
+| [`host`](#host-changes)  | Yes            | Yes                 | Sent during handshake and by client         |
+| [`name`](#handshake)     | Yes            | Yes                 | Multiple formats, sent during handshake     |
+| [`buzz`](#buzzing)       | Yes            | When sent by client |                                             |
+| [`clear`](#clearing)     | Yes            | When sent by client |                                             |
+| [`chat`](#chat)          | Yes            | When sent by client |                                             |
+| [`kick`](#kicking)       | Yes            | No                  |                                             |
+| [`ans`](#points)         | Yes            | No                  |                                             |
+| [`success`](#handshake)  | No             | Yes                 | Sent during handshake                       |
+| [`online`](#online-list) | No             | Yes                 | Sent during handshake and on updates        |
+| [`buzzer`](#handshake)   | No             | Yes                 | Sent during handshake                       |
+| [`reset`](#the-host-may) | Yes            | No                  | Only sent by host                           |
+| [`restart`](#restart)    | Yes            | No                  | Restarts the server, only in developer mode |
+| [`points`](#points)      | Yes            | No                  | Sets the points of a user, only in dev mode |
+| [`teams`](#teams)        | Yes            | No                  | Groups users into teams, only sent by host  |
+| [`team`](#teams)         | No             | Yes                 | Sent after `teams`, sets team of user       |

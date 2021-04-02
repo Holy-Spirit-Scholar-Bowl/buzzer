@@ -1,56 +1,8 @@
 <template>
   <div>
-    <ol class="list-group">
-      <li>
-        You connect to the server. You tell it your name and it tells you and
-        others information about the connection.
-        <details>
-          <summary>Details</summary>
-          When you connect, the server asks for you name by sending
-          <code>NAME</code>. You respond by sending
-          <code>NAME &lt;your_name&gt;</code> (if you're the host, it looks like
-          <code>NAME &lt;your_name&gt; HOST</code>). If someone else is using
-          that name, the server sends <code>NAME_IN_USE</code> and closes the
-          connection. If the name is valid, the server send
-          <code>SUCCESS</code>. It immediately sends a
-          <code>HOST &lt;name_of_host&gt;</code> message to tell you who the
-          host is. It also updates the online list and sends an
-          <code>ONLINE &lt;name_one&gt;,&lt;name_two&gt;...</code> message to
-          everyone to let them know the user list has updated.<br />
-        </details>
-      </li>
-      <li>
-        When you buzz or clear, the server receives the message and echoes it to
-        everyone else
-        <details>
-          <summary>Details</summary>
-          Buzz messages are sent as <code>BUZZ &lt;name_of_buzzer&gt;</code
-          ><br />
-          Clear messages are sent as <code>CLEAR</code><br />
-          The server relays these messages to everyone connected except you, to
-          avoid infinite loops (those are never fun)
-        </details>
-      </li>
-      <li>
-        There are two ways users can be made host - either when they connect or
-        when a host makes them the host
-        <details>
-          <summary>Details</summary>
-          During connection, users can connect as a host by adding the
-          <code>HOST</code> option the the <code>NAME</code> command Host
-          messages are sent as <code>HOST &lt;new_host&gt;</code><br />
-          The server sends this to everyone except you.
-        </details>
-      </li>
-      <li>
-        When you disconnect, the server updates the online list
-        <details>
-          <summary>Details</summary>
-          That's all there is. All the code that handles this logic below, under
-          Server and Client logic.
-        </details>
-      </li>
-    </ol>
+    <p>
+      Please see the <a href="https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/blob/main/docs.md">documentation</a> or the code below.
+    </p>
     <br />
     <h4>See the full code</h4>
     <details>
