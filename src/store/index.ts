@@ -159,7 +159,7 @@ export class BuzzerStore extends VuexModule {
     const JOIN_LOCAL_SOCKET = false;
     const SOCKET_URL = JOIN_LOCAL_SOCKET
       ? "ws://localhost:80"
-      : "wss://scholar-bowl-server.herokuapp.com";
+      : "wss://holy-spirit-scholar-bowl-serve.herokuapp.com";
     let connection = new WebSocket(SOCKET_URL, "echo-protocol");
     this.connection = connection;
 
