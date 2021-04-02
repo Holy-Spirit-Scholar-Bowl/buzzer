@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-// @ts-nocheck
 const execa = require("execa");
 const fs = require("fs");
 
