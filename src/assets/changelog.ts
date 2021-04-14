@@ -197,5 +197,20 @@ export const changelog: ChangelogItem[] = [
     version: "2.7.1",
     header: "Privacy Policy",
     body: "Added a privacy policy"
+  },
+  {
+    date: {
+      year: 2021,
+      day: 13,
+      month: 4
+    },
+    version: "2.8.1",
+    header: "Teams revamp",
+    body: "Updated the teams mechanism",
+    items: [
+      "User points are counted individually, even in a team",
+      "Users in the same team are grouped together",
+      "You can see a team's points by its name"
+    ]
   }
 ].reverse(); // Since new items are added on the bottom and are displayed at the top, the array should be reversed
