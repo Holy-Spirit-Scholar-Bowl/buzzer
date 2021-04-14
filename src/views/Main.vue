@@ -63,7 +63,7 @@ import { Vue, Component } from "vue-property-decorator";
 import { BuzzerStore, vxm } from "@/store";
 import Alerts from "@/components/main/alerts/Alerts.vue";
 import debounce from "lodash.debounce";
-import OnlineList from "@/components/main/OnlineList.vue";
+import OnlineList from "@/components/main/online/OnlineList.vue";
 import AdminPanel from "@/components/main/admin/AdminPanel.vue";
 import DeveloperPanel from "@/components/main/admin/DeveloperPanel.vue";
 import { ProxyWatchers } from "vuex-class-component/dist/interfaces";

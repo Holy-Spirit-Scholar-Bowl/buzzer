@@ -15,6 +15,7 @@ import {
   ReceiveCommand,
   SendCommandParameters,
   SendCommandsKey,
+  ReceiveOnlineParameters,
 } from "@/types";
 import { changelog } from "@/assets/changelog";
 
@@ -92,14 +93,11 @@ export class BuzzerStore extends VuexModule {
   }
 
   // ONLINE LIST
-  onlineList: {
-    name: string;
-    points: number;
-  }[] = [];
+  onlineList: ReceiveOnlineParameters = { users: [], teams: [] }
 
   @mutation
   parseOnlineList(cmd: ReceiveCommand<ReceiveCommands.online>): void {
-    this.onlineList = cmd.parameters.online;
+    this.onlineList = cmd.parameters;
   }
 
   @action

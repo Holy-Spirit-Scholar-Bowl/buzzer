@@ -94,7 +94,9 @@ export default class TeamsModal extends Vue {
   }
 
   get onlineList(): string[] {
-    return vxm.onlineList.map((user) => user.name);
+    let noTeam = vxm.onlineList.users.map((user) => user.user)
+    let team = vxm.onlineList.teams.flatMap((team) => team.users.map((user) => user.user));
+    return [...noTeam, ...team]
   }
 
   newTeams: Record<string, string> = {};

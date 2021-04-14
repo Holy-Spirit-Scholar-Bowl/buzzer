@@ -83,7 +83,7 @@ export type ReceiveOnlineParameters = {
       user: string;
       points: number;
     }[];
-  };
+  }[];
 };
 export type ReceiveTeamParameters = {
   team: string;

@@ -3,7 +3,7 @@
     <h4>Developer</h4>
     <section>
       Set the points of 
-      <b-form-select :options="vxm.onlineList.map(user => user.name)" style="width: auto" v-model="newPointsName"/>
+      <b-form-select :options="onlineList" style="width: auto" v-model="newPointsName"/>
       to
       <b-form-input type="number" v-model="newPoints" @keypress.enter="setPoints(newPointsName, newPoints)" style="width: auto" class="d-inline-block"/>
     </section>
@@ -44,10 +44,18 @@ export default class DeveloperPanel extends Vue {
 
   @Watch("newPointsName")
   updatePointsField(): void {
+    /*
+    Temporarily disabled
     let user = vxm.onlineList.find(e => e.name === this.newPointsName);
     if (user) {
       this.newPoints = user.points
-    }
+    } */
+  }
+
+  get onlineList(): string[] {
+    let noTeam = vxm.onlineList.users.map((user) => user.user)
+    let team = vxm.onlineList.teams.flatMap((team) => team.users.map((user) => user.user));
+    return [...noTeam, ...team]
   }
 
   restartServer(): void {
