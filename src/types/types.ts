@@ -72,9 +72,17 @@ export type ReceiveBuzzerParameters = {
   buzzer: string | null;
 };
 export type ReceiveOnlineParameters = {
-  online: {
-    name: string;
+  users: {
+    user: string;
     points: number;
+  }[];
+  teams: {
+    team: string;
+    points: number;
+    users: {
+      user: string;
+      points: number;
+    }[];
   }[];
 };
 export type ReceiveTeamParameters = {
