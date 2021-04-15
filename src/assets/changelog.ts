@@ -204,7 +204,7 @@ export const changelog: ChangelogItem[] = [
       day: 13,
       month: 4
     },
-    version: "2.8.1",
+    version: "2.8.0",
     header: "Teams revamp",
     body: "Updated the teams mechanism",
     items: [
