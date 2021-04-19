@@ -48,12 +48,6 @@ export type Command<K, T extends string> = {
   command: T;
   parameters: K;
   sent: number;
-  user: {
-    name: string;
-    realName: string;
-    team: string;
-    host: boolean;
-  };
 };
 
 export type NullParameters = null;
@@ -129,7 +123,14 @@ export type SendCommandMap = {
 
 export type SendCommandsKey = keyof typeof SendCommands;
 export type SendCommandParameters<T extends SendCommandsKey> = SendCommandMap[T];
-export type SendCommand<T extends SendCommandsKey> = Command<SendCommandParameters<T>, T>;
+export type SendCommand<T extends SendCommandsKey> = Command<SendCommandParameters<T>, T> & {
+  user: {
+    name: string;
+    realName: string;
+    team: string;
+    host: boolean;
+  };
+};
 
 export type ReceiveCommandMap = {
   "buzzer":  ReceiveBuzzerParameters;
