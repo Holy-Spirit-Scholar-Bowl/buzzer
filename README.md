@@ -1,5 +1,6 @@
 # hssb
 [![Build and Deploy](https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/actions/workflows/deploy.yml/badge.svg)](https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/actions/workflows/deploy.yml)
+[![CodeQL](https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/actions/workflows/codeql-analysis.yml)
 
 Read the [wiki](https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/wiki)
 
