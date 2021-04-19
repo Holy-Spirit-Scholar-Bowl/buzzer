@@ -40,6 +40,12 @@ export default class App extends Vue {
     vxm.name = (localStorage.hasName ?? "Anonymous").replace(/"(.*?)"/, "$1");
     vxm.realName = localStorage.realName ?? "Anonymous" + Math.floor(Math.random() * 100);
     vxm.team = localStorage.team ?? "";
+
+    document.addEventListener("keydown", (event) => {
+      if (event.code === "Space") {
+        vxm.buzz()
+      }
+    })
   }
 
   scrollFix(hashbang: string): void {
