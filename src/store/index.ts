@@ -256,6 +256,7 @@ export class BuzzerStore extends VuexModule {
     let customMessages: Record<number, string> = {
       4000: "You've been kicked by the host",
       4001: "Someone else is using that name",
+      4002: "Slow down! You sent 10 messages to the server in less than 5 seconds"
     };
 
     if (displayAlert) {
