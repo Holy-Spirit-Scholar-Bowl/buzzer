@@ -1,6 +1,7 @@
 # hssb
+[![Build and Deploy](https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/actions/workflows/deploy.yml/badge.svg)](https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/actions/workflows/deploy.yml)
 
-stuff
+Read the [wiki](https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/wiki)
 
 ## Project setup
 ```
