@@ -1,2 +1,2 @@
 (window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0c910f"],{"580f":function(t,e,r){"use strict";r.r(e);var c=function(){var t=this,e=t.$createElement;t._self._c;return t._m(0)},s=[function(){var t=this,e=t.$createElement,r=t._self._c||e;return r("div",[t._v(" Check out the "),r("a",{staticClass:"text-secondary",attrs:{href:"https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/wiki"}},[t._v("wiki")]),t._v(" or see the code on "),r("a",{staticClass:"text-secondary",attrs:{href:"https://github.com/Holy-Spirit-Scholar-Bowl"}},[t._v("GitHub")]),t._v(". ")])}],i=r("2877"),o={},a=Object(i["a"])(o,c,s,!1,null,null,null);e["default"]=a.exports}}]);
-//# sourceMappingURL=chunk-2d0c910f.1f463d76.js.map
+//# sourceMappingURL=chunk-2d0c910f.8fbe6140.js.map
