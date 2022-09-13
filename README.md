@@ -4,6 +4,10 @@
 
 Read the [wiki](https://github.com/Holy-Spirit-Scholar-Bowl/buzzer/wiki)
 
+Visit the site at https://holy-spirit-scholar-bowl.github.io/buzzer
+
+Please note that will take a while to connect to the server on start. The server runs on idle when not in use and takes about a minute to wake up. It will connect, it just takes a minute. 
+
 ## Project setup
 ```
 npm install
